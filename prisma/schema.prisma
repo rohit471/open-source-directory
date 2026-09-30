@@ -1,0 +1,91 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  icon        String?
+  projects    Project[]
+  createdAt   DateTime  @default(now())
+}
+
+model AlternativeTo {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  website     String?
+  projects    Project[]
+  createdAt   DateTime  @default(now())
+}
+
+model Tag {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  projects  Project[]
+  createdAt DateTime  @default(now())
+}
+
+model Stack {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  projects  Project[]
+  createdAt DateTime  @default(now())
+}
+
+model License {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  projects    Project[]
+  createdAt   DateTime  @default(now())
+}
+
+model Project {
+  id              String         @id @default(cuid())
+  title           String
+  slug            String         @unique
+  tagline         String
+  description     String
+  websiteUrl      String
+  githubUrl       String
+  githubStars     Int            @default(0)
+  license         String         @default("MIT")
+  logoUrl         String?
+  featured        Boolean        @default(false)
+  isSelfHosted    Boolean        @default(true)
+  isAiNative      Boolean        @default(false)
+  status          String         @default("APPROVED")
+  planType        String         @default("FREE")
+
+  categoryId      String
+  category        Category       @relation(fields: [categoryId], references: [id])
+
+  alternativeToId String?
+  alternativeTo   AlternativeTo? @relation(fields: [alternativeToId], references: [id])
+
+  licenseId       String?
+  licenseRef      License?       @relation(fields: [licenseId], references: [id])
+
+  tags            Tag[]
+  stacks          Stack[]
+
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}

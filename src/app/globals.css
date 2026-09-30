@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #F7F8F5;
+    --foreground: #17221B;
+    --card: #FFFFFF;
+    --card-foreground: #17221B;
+    --popover: #FFFFFF;
+    --popover-foreground: #17221B;
+    --primary: #166534;
+    --primary-foreground: #FFFFFF;
+    --secondary: #EAF4EC;
+    --secondary-foreground: #166534;
+    --muted: #F0F4F1;
+    --muted-foreground: #59645D;
+    --accent: #EAF4EC;
+    --accent-foreground: #166534;
+    --destructive: #dc2626;
+    --destructive-foreground: #FFFFFF;
+    --border: #DCE4DD;
+    --input: #DCE4DD;
+    --ring: #166534;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: #111813;
+    --foreground: #F7F8F5;
+    --card: #18221B;
+    --card-foreground: #F7F8F5;
+    --popover: #18221B;
+    --popover-foreground: #F7F8F5;
+    --primary: #22c55e;
+    --primary-foreground: #111813;
+    --secondary: #1f3325;
+    --secondary-foreground: #86efac;
+    --muted: #1a281e;
+    --muted-foreground: #94a3b8;
+    --accent: #1f3325;
+    --accent-foreground: #86efac;
+    --destructive: #ef4444;
+    --destructive-foreground: #FFFFFF;
+    --border: #28392c;
+    --input: #28392c;
+    --ring: #22c55e;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  overflow-x: hidden;
+}
+
+.container-custom {
+  width: 100%;
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes ambient-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.08) translateY(-6px);
+  }
+}
+
+.animate-ambient-pulse {
+  animation: ambient-pulse 8s ease-in-out infinite;
+}
+
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(16, 185, 129, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
